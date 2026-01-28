@@ -1,0 +1,169 @@
+:root{
+  --bg:#0b1020;
+  --card:#121a33;
+  --text:#e9ecff;
+  --muted:#aab2d5;
+  --border:rgba(255,255,255,.08);
+  --primary:#7c5cff;
+  --good:#2ecc71;
+  --bad:#ff5c7a;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  background: radial-gradient(1200px 800px at 20% 0%, rgba(124,92,255,.25), transparent 60%),
+              radial-gradient(800px 600px at 100% 20%, rgba(46,204,113,.18), transparent 55%),
+              var(--bg);
+  color:var(--text);
+}
+
+.app{max-width:860px; margin:0 auto; padding:24px}
+
+.topbar{
+  display:flex; align-items:center; justify-content:space-between;
+  margin-bottom:16px;
+}
+.topbar h1{font-size:20px; margin:0; letter-spacing:.2px}
+.topbar-right{display:flex; gap:8px}
+
+.card{
+  background: linear-gradient(180deg, rgba(255,255,255,.04), transparent 40%), var(--card);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:18px;
+  box-shadow: 0 20px 40px rgba(0,0,0,.25);
+}
+
+.hidden{display:none}
+.muted{color:var(--muted)}
+
+.grid{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap:12px;
+  margin:16px 0;
+}
+@media (max-width:680px){
+  .grid{grid-template-columns:1fr}
+}
+
+.field{display:flex; flex-direction:column; gap:6px}
+.field span{font-size:13px; color:var(--muted)}
+.field input, .field select{
+  padding:10px 12px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  background: rgba(0,0,0,.18);
+  color:var(--text);
+  outline:none;
+}
+.field.checkbox{flex-direction:row; align-items:center; gap:10px}
+.field.checkbox span{margin-top:1px}
+.field.checkbox input{width:18px; height:18px}
+
+.actions{display:flex; gap:10px; margin-top:12px}
+.actions-between{justify-content:space-between}
+
+.btn{
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:10px 14px;
+  background: rgba(0,0,0,.18);
+  color:var(--text);
+  cursor:pointer;
+  transition: transform .04s ease, background .2s ease, border-color .2s ease;
+}
+.btn:hover{background: rgba(255,255,255,.06)}
+.btn:active{transform: translateY(1px)}
+.btn:disabled{opacity:.55; cursor:not-allowed}
+
+.btn-primary{
+  background: rgba(124,92,255,.25);
+  border-color: rgba(124,92,255,.45);
+}
+.btn-primary:hover{background: rgba(124,92,255,.35)}
+
+.btn-ghost{
+  background: transparent;
+}
+
+.help{margin-top:12px}
+.help summary{cursor:pointer; color:var(--muted)}
+.help code{color:var(--text)}
+
+.quiz-head{display:flex; flex-direction:column; gap:10px; margin-bottom:10px}
+.progress{
+  height:10px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  overflow:hidden;
+  background: rgba(0,0,0,.18);
+}
+.progress-bar{
+  height:100%;
+  background: rgba(124,92,255,.65);
+  width:0%;
+  transition: width .25s ease;
+}
+.meta{display:flex; justify-content:space-between; align-items:center; gap:10px}
+.pill{
+  font-size:12px;
+  padding:4px 10px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  color:var(--muted);
+}
+
+.answers{
+  display:grid;
+  grid-template-columns: 1fr;
+  gap:10px;
+  margin-top:12px;
+}
+.answer{
+  text-align:left;
+  padding:12px 12px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  background: rgba(0,0,0,.18);
+  cursor:pointer;
+}
+.answer:hover{background: rgba(255,255,255,.06)}
+.answer.correct{border-color: rgba(46,204,113,.55); background: rgba(46,204,113,.12)}
+.answer.wrong{border-color: rgba(255,92,122,.55); background: rgba(255,92,122,.12)}
+.answer.locked{cursor:default}
+
+.feedback{
+  margin-top:12px;
+  padding:12px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  background: rgba(0,0,0,.18);
+}
+.feedback.good{border-color: rgba(46,204,113,.55)}
+.feedback.bad{border-color: rgba(255,92,122,.55)}
+.feedback .title{font-weight:700; margin-bottom:6px}
+
+.result{font-size:18px; margin:10px 0 0}
+.review{display:flex; flex-direction:column; gap:10px; margin-top:10px}
+.review-item{
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:12px;
+  background: rgba(0,0,0,.16);
+}
+.review-item .q{font-weight:700; margin-bottom:6px}
+.review-item .row{display:flex; flex-wrap:wrap; gap:8px; margin:6px 0}
+.tag{
+  font-size:12px;
+  padding:3px 10px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  color:var(--muted);
+}
+.tag.good{border-color: rgba(46,204,113,.55); color: rgba(46,204,113,.95)}
+.tag.bad{border-color: rgba(255,92,122,.55); color: rgba(255,92,122,.95)}
+
+.footer{margin-top:14px; font-size:12px}
