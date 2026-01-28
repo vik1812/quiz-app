@@ -1,0 +1,41 @@
+[
+  {
+    "id": "q1",
+    "topic": "OCF",
+    "question": "Qual è una delle funzioni principali del consulente finanziario abilitato all’offerta fuori sede?",
+    "choices": [
+      "Gestire direttamente il patrimonio del cliente senza mandato",
+      "Promuovere e collocare strumenti finanziari e servizi di investimento",
+      "Erogare credito al consumo",
+      "Garantire rendimenti minimi per contratto"
+    ],
+    "answerIndex": 1,
+    "explanation": "L’offerta fuori sede riguarda promozione e collocamento di strumenti/servizi, non gestione discrezionale senza mandato né garanzie di rendimento."
+  },
+  {
+    "id": "q2",
+    "topic": "Mercati",
+    "question": "Uno stop loss serve principalmente a:",
+    "choices": [
+      "Aumentare il profitto medio",
+      "Evitare slippage",
+      "Limitare la perdita massima su una posizione",
+      "Comprare a sconto automaticamente"
+    ],
+    "answerIndex": 2,
+    "explanation": "Lo stop loss è uno strumento di gestione del rischio: definisce dove uscire in perdita."
+  },
+  {
+    "id": "q3",
+    "topic": "Finanza",
+    "question": "La diversificazione in un portafoglio serve soprattutto a:",
+    "choices": [
+      "Eliminare qualsiasi rischio",
+      "Ridurre il rischio specifico combinando asset diversi",
+      "Garantire rendimenti positivi ogni mese",
+      "Aumentare la leva finanziaria"
+    ],
+    "answerIndex": 1,
+    "explanation": "Diversificare riduce il rischio specifico; non elimina il rischio di mercato."
+  }
+]
