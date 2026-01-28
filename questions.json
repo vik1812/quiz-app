@@ -38,7 +38,7 @@
   {
     "id": "micro_q4",
     "topic": "Microeconomia",
-    "question": "In concorrenza monopolistica l'obiettivo della pubblicità à:",
+    "question": "In concorrenza monopolistica l'obiettivo della pubblicità e':",
     "choices": [
       "Informare gli acquirenti sulle qualità del prodotto.",
       "Rendere meno rilevante il prezzo come discriminante dell'acquisto.",
@@ -82,9 +82,7 @@
       "Piu' elevato."
     ],
     "answerIndex": 3
-  }
-]
-[
+  },
   {
     "id": "micro_q8",
     "topic": "Microeconomia",
@@ -116,11 +114,12 @@
     "choices": [
       "Le imposte indirette sono meno distorsive di quelle dirette.",
       "Le imposte indirette sono piu' distorsive di quelle dirette.",
-      "Non e' necessario l'intervento dello stato per porre rimedio alle esternalità.",
-      "e' necessario l'intervento dello stato per porre rimedio alle esternalità."
+      "Non e' necessario l'intervento dello Stato per porre rimedio alle esternalità.",
+      "E' necessario l'intervento dello Stato per porre rimedio alle esternalità."
     ],
     "answerIndex": 2
-  },
+  }
+],
   {
     "id": "micro_q11",
     "topic": "Microeconomia",
