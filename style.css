@@ -167,3 +167,21 @@ body{
 .tag.bad{border-color: rgba(255,92,122,.55); color: rgba(255,92,122,.95)}
 
 .footer{margin-top:14px; font-size:12px}
+
+/* FIX VISIBILITÀ TESTO */
+#question-text,
+.answers,
+.answer,
+.feedback,
+.review,
+.review-item,
+.field input,
+.field select,
+.btn {
+  color: var(--text) !important;
+}
+
+/* Se il problema è SOLO sui bottoni risposta */
+.answer {
+  color: var(--text) !important;
+}
