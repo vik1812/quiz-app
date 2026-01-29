@@ -327,8 +327,12 @@ els.resultSummary.textContent =
 
   // Review
   els.review.innerHTML = "";
+
+  const qs = session.questions;
+
   qs.forEach((q, i) => {
-    const state = session.answers[q.id];
+    // state può mancare se non hai mai aperto quella domanda
+    const state = session.answers[q.id] ?? { selectedOriginalIndex: null, isCorrect: null };
 
     const div = document.createElement("div");
     div.className = "review-item";
@@ -347,26 +351,25 @@ els.resultSummary.textContent =
     row.appendChild(tag1);
 
     const tag2 = document.createElement("span");
-   const answered = state?.selectedOriginalIndex !== null && state?.selectedOriginalIndex !== undefined;
+    const answered = state.selectedOriginalIndex !== null && state.selectedOriginalIndex !== undefined;
 
-if (!answered) {
-  tag2.className = "tag";
-  tag2.textContent = "Non risposto";
-} else if (state.isCorrect) {
-  tag2.className = "tag good";
-  tag2.textContent = "Corretto";
-} else {
-  tag2.className = "tag bad";
-  tag2.textContent = "Sbagliato";
-}
-
+    if (!answered) {
+      tag2.className = "tag";
+      tag2.textContent = "Non risposto";
+    } else if (state.isCorrect) {
+      tag2.className = "tag good";
+      tag2.textContent = "Corretto";
+    } else {
+      tag2.className = "tag bad";
+      tag2.textContent = "Sbagliato";
+    }
     row.appendChild(tag2);
 
     div.appendChild(row);
 
     const your = document.createElement("div");
     your.className = "muted";
-    const yourIdx = state?.selectedOriginalIndex;
+    const yourIdx = state.selectedOriginalIndex;
     const yourText = (yourIdx === null || yourIdx === undefined) ? "—" : q.choices[yourIdx];
     your.textContent = `Tua risposta: ${yourText}`;
     div.appendChild(your);
@@ -385,7 +388,7 @@ if (!answered) {
 
     els.review.appendChild(div);
   });
-}
+
 
 async function loadQuestions() {
   const res = await fetch("questions.json", { cache: "no-store" });
