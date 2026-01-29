@@ -190,3 +190,9 @@ body{
   color: var(--text);
 }
 .muted { color: var(--muted) !important; }
+
+.answer.selected{
+  border-color: rgba(124,92,255,.75);
+  background: rgba(124,92,255,.14);
+}
+
