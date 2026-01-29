@@ -177,11 +177,13 @@ function renderQuestion() {
 
   // Se già risposto e stai tornando indietro, re-render feedback/markers
   if (answered) {
+  if (session.mode === "instant") {
     applyAnswerStyles(q);
-    if (session.mode === "instant") {
-      renderFeedback(q);
-    }
+    renderFeedback(q);
+  } else {
+    applySelectedOnly(q);
   }
+}
 }
 
 function selectAnswer(q, selectedOriginalIndex) {
@@ -197,12 +199,28 @@ function selectAnswer(q, selectedOriginalIndex) {
   applyAnswerStyles(q);
 
   if (session.mode === "instant") {
-    renderFeedback(q);
-  }
-
-  els.btnNext.disabled = false;
+  applyAnswerStyles(q);   // mostra giusta/sbagliata + corretta
+  renderFeedback(q);      // mostra spiegazione
+} else {
+  applySelectedOnly(q);   // in modalità esame NON rivelare la soluzione
 }
 
+function applySelectedOnly(q) {
+  const state = session.answers[q.id];
+  const mapped = state.mappedChoices;
+  const buttons = [...els.answers.querySelectorAll(".answer")];
+
+  buttons.forEach((btn, mappedIndex) => {
+    btn.classList.add("locked");
+    const originalIndex = mapped[mappedIndex].originalIndex;
+
+    if (state.selectedOriginalIndex === originalIndex) {
+      btn.classList.add("selected");
+    }
+  });
+}
+
+  
 function applyAnswerStyles(q) {
   const state = session.answers[q.id];
   const mapped = state.mappedChoices;
@@ -416,3 +434,8 @@ function wireEvents() {
     alert("Errore: " + err.message);
   }
 })();
+
+.answer.selected{
+  border-color: rgba(124,92,255,.75);
+  background: rgba(124,92,255,.14);
+}
