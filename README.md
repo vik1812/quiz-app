@@ -1,6 +1,6 @@
-# Quiz Studio (HTML/CSS/JS)
+# Quiz Microeconomia (HTML/CSS/JS)
 
-Quiz locale per studiare. Funziona su GitHub Pages.
+Quiz locale per studiare Microeconomia. Funziona su GitHub Pages.
 
 ## Struttura
 - index.html
