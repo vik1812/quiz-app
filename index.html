@@ -48,6 +48,10 @@
       <div class="actions">
         <button id="btn-start" class="btn btn-primary">Inizia</button>
       </div>
+      <button id="btn-bank" class="btn btn-ghost" type="button">
+  📚 Vedi tutte le domande (con risposte)
+</button>
+
 
       <details class="help">
         <summary>Come aggiungo le domande?</summary>
@@ -92,6 +96,29 @@
         <button id="btn-retry-wrong" class="btn btn-ghost hidden">Ripeti sbagliate</button>
         <button id="btn-restart" class="btn btn-primary">Nuova sessione</button>
       </div>
+
+      <section id="screen-bank" class="hidden">
+  <div class="app">
+    <div class="topbar">
+      <h1>Archivio domande</h1>
+      <div class="topbar-right">
+        <button id="btn-bank-close" class="btn" type="button">Chiudi</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="field">
+        <span>Cerca (testo domanda)</span>
+        <input id="bank-search" type="text" placeholder="Es. break-even, ammortamento, costo..." />
+      </div>
+
+      <div class="muted" style="margin-top:10px" id="bank-count"></div>
+
+      <div id="bank-list" class="review" style="margin-top:12px"></div>
+    </div>
+  </div>
+</section>
+
 
       <h3>Review</h3>
       <div id="review" class="review"></div>
