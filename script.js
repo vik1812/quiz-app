@@ -6,6 +6,13 @@ const els = {
   home: document.getElementById("screen-home"),
   quiz: document.getElementById("screen-quiz"),
   result: document.getElementById("screen-result"),
+  bank: document.getElementById("screen-bank"),
+  btnBank: document.getElementById("btn-bank"),
+  btnBankClose: document.getElementById("btn-bank-close"),
+  bankList: document.getElementById("bank-list"),
+  bankSearch: document.getElementById("bank-search"),
+  bankCount: document.getElementById("bank-count"),
+
 
   inputCount: document.getElementById("input-count"),
   selectMode: document.getElementById("select-mode"),
@@ -82,8 +89,10 @@ function show(screen) {
   els.home.classList.add("hidden");
   els.quiz.classList.add("hidden");
   els.result.classList.add("hidden");
+  if (els.bank) els.bank.classList.add("hidden");
   screen.classList.remove("hidden");
 }
+
 
 function setTopic(topic) {
   if (!topic) {
@@ -399,6 +408,58 @@ async function loadQuestions() {
   const data = await res.json();
 
   if (!Array.isArray(data)) throw new Error("questions.json deve contenere un array");
+function escapeRegExp(s) {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function renderBank(filterText = "") {
+  if (!els.bankList) return;
+
+  const qlist = allQuestions.slice(); // tutte le domande del JSON
+
+  const f = (filterText || "").trim().toLowerCase();
+  const filtered = f
+    ? qlist.filter(q => (q.question || "").toLowerCase().includes(f))
+    : qlist;
+
+  els.bankList.innerHTML = "";
+  if (els.bankCount) els.bankCount.textContent = `Totale: ${filtered.length} domande`;
+
+  filtered.forEach((q, i) => {
+    const div = document.createElement("div");
+    div.className = "review-item";
+
+    const qEl = document.createElement("div");
+    qEl.className = "q";
+    qEl.textContent = `${i + 1}. ${q.question}`;
+    div.appendChild(qEl);
+
+    // Risposta corretta
+    const corr = document.createElement("div");
+    corr.className = "muted";
+    corr.style.marginTop = "6px";
+    corr.textContent = `✅ Corretta: ${q.choices[q.answerIndex]}`;
+    div.appendChild(corr);
+
+    // (Opzionale) mostra tutte le opzioni
+    const ul = document.createElement("ul");
+    ul.style.margin = "8px 0 0";
+    ul.style.paddingLeft = "18px";
+
+    q.choices.forEach((c, idx) => {
+      const li = document.createElement("li");
+      li.textContent = c;
+
+      if (idx === q.answerIndex) {
+        li.style.fontWeight = "700";
+      }
+      ul.appendChild(li);
+    });
+
+    div.appendChild(ul);
+    els.bankList.appendChild(div);
+  });
+}
 
   // Validazione minima
   data.forEach((q, idx) => {
@@ -430,6 +491,28 @@ function wireEvents() {
     if (session.questions.length === 0) {
       alert("Non ci sono domande disponibili. Controlla questions.json.");
       return;
+        // Archivio domande (solo lettura)
+  if (els.btnBank && els.bank) {
+    els.btnBank.addEventListener("click", () => {
+      show(els.bank);
+      if (els.bankSearch) els.bankSearch.value = "";
+      renderBank("");
+      if (els.bankSearch) els.bankSearch.focus();
+    });
+  }
+
+  if (els.btnBankClose && els.home) {
+    els.btnBankClose.addEventListener("click", () => {
+      show(els.home);
+    });
+  }
+
+  if (els.bankSearch) {
+    els.bankSearch.addEventListener("input", (e) => {
+      renderBank(e.target.value);
+    });
+  }
+
     }
 
     show(els.quiz);
